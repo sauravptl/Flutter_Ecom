@@ -109,6 +109,7 @@ class _LoginPageState extends State<LoginPage> {
                         )
                       : Container()),
                   ButtonBarTheme(
+                    data: null,
                     child: ButtonBar(
                       children: <Widget>[
                         FlatButton(

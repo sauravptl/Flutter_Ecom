@@ -134,8 +134,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
                             style: TextStyle(color: Colors.red),
                           )
                         : Container()),
-                    ButtonTheme.bar(
+                    ButtonBarTheme(
                       // make buttons use the appropriate styles for cards
+                      data: null,
                       child: ButtonBar(
                         children: <Widget>[
                           FlatButton(
