@@ -38,8 +38,7 @@ class _LoginPageState extends State<LoginPage> {
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   Form(
-                    key: _formStateKey,
-                    autovalidate: true,
+                    autovalidateMode: AutovalidateMode.always, key: _formStateKey,
                     child: Column(
                       children: <Widget>[
                         Padding(
@@ -112,6 +111,7 @@ class _LoginPageState extends State<LoginPage> {
                     data: null,
                     child: ButtonBar(
                       children: <Widget>[
+                        // ignore: deprecated_member_use
                         FlatButton(
                           child: Text(
                             'LOGIN',
@@ -137,6 +137,7 @@ class _LoginPageState extends State<LoginPage> {
                             }
                           },
                         ),
+                        // ignore: deprecated_member_use
                         FlatButton(
                           child: Text(
                             'Get Register',
@@ -168,8 +169,8 @@ class _LoginPageState extends State<LoginPage> {
                   style: TextStyle(fontSize: 18, color: Colors.green),
                 )
               : Container()),
-          (!isGoogleSignIn
-              ? RaisedButton(
+          // ignore: deprecated_member_use
+          if (!isGoogleSignIn) RaisedButton(
                   child: Text('Google Login'),
                   onPressed: () {
                     googleSignin(context).then((user) {
@@ -185,8 +186,8 @@ class _LoginPageState extends State<LoginPage> {
                       }
                     });
                   },
-                )
-              : RaisedButton(
+                // ignore: deprecated_member_use
+                ) else RaisedButton(
                   child: Text('Google Logout'),
                   onPressed: () {
                     googleSignout().then((response) {
@@ -198,7 +199,7 @@ class _LoginPageState extends State<LoginPage> {
                       }
                     });
                   },
-                )),
+                ),
         ],
       )),
     );

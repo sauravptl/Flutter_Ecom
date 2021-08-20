@@ -39,19 +39,23 @@ class _ShopListState extends State<ShopListWidget> {
         isInCart: cart.isExists(item),
         isSideLine: isSideLine,
         onTap: (item) {
+          // ignore: deprecated_member_use
           _scaffoldKey.currentState.hideCurrentSnackBar();
 
           if (cart.isExists(item)) {
             cart.remove(item);
+            // ignore: deprecated_member_use
             _scaffoldKey.currentState.showSnackBar(SnackBar(
               content: Text('Item is removed from cart!'),
             ));
           } else if (item.inStock) {
             cart.add(item);
+            // ignore: deprecated_member_use
             _scaffoldKey.currentState.showSnackBar(SnackBar(
               content: Text('Item is added to cart!'),
             ));
           } else {
+            // ignore: deprecated_member_use
             _scaffoldKey.currentState.showSnackBar(SnackBar(
               content: Text('Item is out of stock!'),
             ));
@@ -87,7 +91,8 @@ class _ShopListState extends State<ShopListWidget> {
   }
 }
 
-class _ShopListItem extends StatelessWidget {
+// ignore: must_be_immutable
+class _ShopListItem extends StatefulWidget {
   final Item item;
   final bool isInCart;
   final bool isSideLine;
@@ -96,9 +101,14 @@ class _ShopListItem extends StatelessWidget {
   _ShopListItem({this.item, this.isInCart, this.isSideLine, this.onTap});
 
   @override
+  __ShopListItemState createState() => __ShopListItemState();
+}
+
+class __ShopListItemState extends State<_ShopListItem> {
+  @override
   Widget build(BuildContext context) {
     Border border;
-    if (isSideLine) {
+    if (widget.isSideLine) {
       border = Border(
           bottom: BorderSide(color: Colors.grey, width: 0.5),
           right: BorderSide(color: Colors.grey, width: 0.5));
@@ -107,7 +117,7 @@ class _ShopListItem extends StatelessWidget {
     }
 
     return InkWell(
-        onTap: () => this.onTap(item),
+        onTap: () => this.widget.onTap(widget.item),
         child: Container(
             decoration: BoxDecoration(border: border),
             child: Column(
@@ -119,37 +129,43 @@ class _ShopListItem extends StatelessWidget {
                 Container(
                   child: AspectRatio(
                     aspectRatio: 1,
-                    child: Image.network(item.imageUrl),
+                    child: Image.network(widget.item.imageUrl),
                   ),
                   height: 250,
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 16),
                 ),
-                Text(item.name,
+                Text(widget.item.name,
                     textAlign: TextAlign.center,
                     style: Theme.of(context)
                         .textTheme
+                        // ignore: deprecated_member_use
                         .title
                         .apply(fontSizeFactor: 0.8)),
                 Padding(
                   padding: EdgeInsets.only(top: 16),
                 ),
-                Text(item.formattedPrice,
+                Text(widget.item.formattedPrice,
                     textAlign: TextAlign.center,
                     style: Theme.of(context)
                         .textTheme
+                        // ignore: deprecated_member_use
                         .subhead
                         .apply(fontSizeFactor: 0.8)),
                 Padding(
                   padding: EdgeInsets.only(top: 16),
                 ),
-                Text(this.isInCart ? "In Cart" : item.formattedAvailability,
+                Text(
+                    this.widget.isInCart
+                        ? "In Cart"
+                        : widget.item.formattedAvailability,
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.caption.apply(
                         fontSizeFactor: 0.8,
-                        color:
-                            isInCart ? Colors.blue : item.availabilityColor)),
+                        color: widget.isInCart
+                            ? Colors.blue
+                            : widget.item.availabilityColor)),
               ],
             )));
   }

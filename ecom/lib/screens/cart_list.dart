@@ -39,6 +39,7 @@ class _CartListWidgetState extends State<CartListWidget> {
         appBar: AppBar(
           title: Text('My Cart'),
           actions: <Widget>[
+            // ignore: deprecated_member_use
             FlatButton(
               textColor: Colors.white,
               onPressed: () => this._checkout(),
@@ -87,12 +88,14 @@ class _CartListSummaryFooterWidget extends StatelessWidget {
               Text(
                 'Total',
                 textAlign: TextAlign.left,
+                // ignore: deprecated_member_use
                 style: Theme.of(context).textTheme.title,
               ),
               Expanded(
                   child: Text(
                 this.totalPrice,
                 textAlign: TextAlign.right,
+                // ignore: deprecated_member_use
                 style: Theme.of(context).textTheme.subhead,
               ))
             ],
@@ -131,6 +134,7 @@ class _CartListItemWidget extends StatelessWidget {
               child: Text(
             item.name,
             style:
+                // ignore: deprecated_member_use
                 Theme.of(context).textTheme.title.apply(fontSizeFactor: 0.75),
           )),
           Padding(
@@ -139,6 +143,7 @@ class _CartListItemWidget extends StatelessWidget {
           Text(
             item.formattedPrice,
             textAlign: TextAlign.right,
+            // ignore: deprecated_member_use
             style: Theme.of(context).textTheme.subhead,
           )
         ],

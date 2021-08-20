@@ -36,8 +36,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     Form(
-                      key: _formStateKey,
-                      autovalidate: true,
+                      autovalidateMode: AutovalidateMode.always, key: _formStateKey,
                       child: Column(
                         children: <Widget>[
                           Padding(
@@ -139,6 +138,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                       data: null,
                       child: ButtonBar(
                         children: <Widget>[
+                          // ignore: deprecated_member_use
                           FlatButton(
                             child: Text(
                               'Registration',
@@ -164,6 +164,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                               }
                             },
                           ),
+                          // ignore: deprecated_member_use
                           FlatButton(
                             child: Text(
                               'Login',
