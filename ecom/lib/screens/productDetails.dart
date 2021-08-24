@@ -42,11 +42,8 @@ class _ProductScreenState extends State<ProductScreen> {
             child: GridTile(
               child: GestureDetector(
                 child: Center(
-                  //child: Text('Product Image'),
-                  child: Image.asset(
-                    productData.imageUrl,
-                    fit: BoxFit.cover,
-                  ),
+                  child: Text('Product Image'),
+                  //child: Image.asset(productData.imageUrl,fit: BoxFit.cover,),
                 ),
                 onTap: () {
                   Navigator.of(context).pushNamed(ProductDetailScreen.routeName,
