@@ -17,7 +17,7 @@ class _CartScreenState extends State<CartScreen> {
     final cart = Provider.of<Cart>(context);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Cart Screen'),
+        title: const Text('Your Cart'),
       ),
       body: Column(
         children: [
