@@ -34,63 +34,71 @@ class _ProductScreenState extends State<ProductScreen> {
       ),
       body: GridView.builder(
         itemBuilder: (context, index) => Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: GridTile(
-            child: GestureDetector(
-              child: Center(
-                child: Text('Product Image'),
-              ) ,
-              //Image.asset(productData.imageUrl, fit: BoxFit.cover,),
-              onTap: () {
-                Navigator.of(context).pushNamed(ProductDetailScreen.routeName,
-                    arguments: productData.items[index].id);
-              },
+          padding: const EdgeInsets.all(2.0),
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.blue[100],
             ),
-            footer: GridTileBar(
-              backgroundColor: Colors.blueGrey,
-              title: Text(
-                productData.items[index].title,
-                textAlign: TextAlign.center,
-              ),
-              trailing: IconButton(
-                onPressed: () {
-                  if (valid) {
-                    cart.addItem(
-                        productData.items[index].id,
-                        productData.items[index].price,
-                        productData.items[index].title);
-                    ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('Added to cart, Check cart'),
-                        duration: Duration(seconds: 3),
-                      ),
-                    );
-                  } else {
-                    showDialog(
-                      context: context,
-                      builder: (context) => AlertDialog(
-                        title: const Text('Please Login First'),
-                        actions: [
-                          TextButton(
-                            onPressed: () {
-                              Navigator.of(context).pop();
-                            },
-                            child: const Text('Cancel'),
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              Navigator.of(context).pushNamedAndRemoveUntil(
-                                  '/', (route) => false);
-                            },
-                            child: const Text('OK'),
-                          )
-                        ],
-                      ),
-                    );
-                  }
+            child: GridTile(
+              child: GestureDetector(
+                child: Center(
+                  //child: Text('Product Image'),
+                  child: Image.asset(
+                    productData.imageUrl,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                onTap: () {
+                  Navigator.of(context).pushNamed(ProductDetailScreen.routeName,
+                      arguments: productData.items[index].id);
                 },
-                icon: const Icon(Icons.shopping_cart),
+              ),
+              footer: GridTileBar(
+                backgroundColor: Colors.blueGrey,
+                title: Text(
+                  productData.items[index].title,
+                  textAlign: TextAlign.center,
+                ),
+                trailing: IconButton(
+                  onPressed: () {
+                    if (valid) {
+                      cart.addItem(
+                          productData.items[index].id,
+                          productData.items[index].price,
+                          productData.items[index].title);
+                      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Added to cart, Check cart'),
+                          duration: Duration(seconds: 3),
+                        ),
+                      );
+                    } else {
+                      showDialog(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                          title: const Text('Please Login First'),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: const Text('Cancel'),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pushNamedAndRemoveUntil(
+                                    '/', (route) => false);
+                              },
+                              child: const Text('OK'),
+                            )
+                          ],
+                        ),
+                      );
+                    }
+                  },
+                  icon: const Icon(Icons.shopping_cart),
+                ),
               ),
             ),
           ),

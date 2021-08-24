@@ -76,7 +76,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       backgroundColor: Colors.blue[100],
       body: Center(
         child: Card(
-          margin: const EdgeInsets.all(10),
+          margin: const EdgeInsets.all(20),
           color: Colors.blue[200],
           elevation: 5,
           child: SingleChildScrollView(
@@ -161,6 +161,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           return null;
                         },
                       ),
+                    SizedBox(
+                      height: 20.0,
+                    ),
                     ElevatedButton(
                       onPressed: () {
                         _submit();

@@ -103,6 +103,8 @@ class Products with ChangeNotifier {
     return [..._item];
   }
 
+  String get imageUrl => null;
+
   Product findById(String id) {
     return items.firstWhere((element) => element.id == id);
   }
